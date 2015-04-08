@@ -1,0 +1,641 @@
+/* ==========================================================================
+   Variables and Mixins
+   ========================================================================== */
+
+@mixin display {
+  display: inline-block;
+  vertical-align: top;
+}
+
+@mixin transition($what, $time) {
+  -webkit-transition: $what $time;
+  -moz-transition: $what $time;
+  -ms-transition: $what $time;
+  -o-transition: $what $time;
+  transition: $what $time;
+}
+
+@mixin flexbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flexfolow($all, $row, $wrap) {
+  flex-direction: $row;
+  flex-wrap: $wrap;
+
+  -webkit-flex-flow: $all;
+  -ms-flex-flow: $all;
+}
+
+@mixin justify($space, $ms) {
+  justify-content: $space;
+  -webkit-justify-content: $space;
+  -ms-justify-content: $space;
+
+  -ms-flex-pack: $ms;
+}
+
+$html_skill: 92%;
+$css_skill: 86%;
+$js_skill: 34%;
+$ps_skill: 53%;
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+  color: #737373;
+}
+
+html {
+  font-size: 14px;
+  line-height: 25px;
+  font-family: 'Open Sans', sans-serif;
+  background: #f1f2f7;
+  font-weight: 300;
+}
+
+body {
+  min-width: 960px;
+}
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/*
+ * Remove the gap between images, videos, audio and canvas and the bottom of
+ * their containers: h5bp.com/i/440
+ */
+
+audio,
+canvas,
+img,
+video {
+  vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+  resize: vertical;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+/* ==========================================================================
+   Browse Happy prompt
+   ========================================================================== */
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.button {
+  @include display;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 12px;
+  color: #16a085;
+  padding: 5px 20px 6px;
+  border: 1px solid #16a085;
+  background: #fff;
+  border-radius: 3px;
+  font-weight: 400;
+  @include transition(all, .3s);
+  &:hover {
+    background: #16a085;
+    color: #fff;
+  }
+}
+
+/* ==========================================================================
+   Forms elements
+   ========================================================================== */
+
+.input {
+  border: 1px solid #f0f0f0;
+  border-radius: 3px;
+  background: #f0f0f0;
+  height: 43px;
+  padding: 0 15px;
+  margin-bottom: 10px;
+}
+
+.textarea {
+  background: #f0f0f0;
+  border: 1px solid #f0f0f0;
+  width: 100%;
+  padding: 15px;
+}
+
+.input,
+.textarea {
+  @include transition(all, .3s);
+  &:focus {
+    border: 1px solid #1fb5ac;
+    background: #fff;
+  }
+  &.error {
+    border: 1px solid #cc0000;
+  }
+}
+
+/* ==========================================================================
+   Base styles
+   ========================================================================== */
+
+.wrapper {
+  width: 940px;
+  min-width: 940px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.block {
+  background: #fff;
+  padding: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+header {
+  height: 715px;
+  background: url('../img/bg_top.jpg') 0 0;
+  -webkit-background-size: cover;
+  background-size: cover;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  font-size: 50px;
+  color: #fff;
+  text-align: center;
+  line-height: 1.1em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  .top_block {
+    position: relative;
+    top: 35%;
+  }
+  .my_name {
+    font-size: 60px;
+  }
+  .slogan {
+    font-size: 40px;
+  }
+  .double_line {
+    height: 6px;
+    width: 35%;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    margin: 20px auto 10px;
+  }
+  .social_icons {
+    margin-top: 50px;
+    li {
+      @include display;
+    }
+  }
+}
+
+nav {
+  height: 80px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #fff;
+  box-shadow: 0px 5px 30px -20px #000;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  font-size: 16px;
+  &.fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: .9;
+    z-index: 10;
+    min-width: 940px;
+  }
+  li {
+    @include display;
+    a {
+      color: #4b4e5d;
+      text-decoration: none;
+      text-transform: uppercase;
+      display: inline-block;
+      line-height: 80px;
+      padding: 0 20px;
+      outline: none;
+      &:hover {
+        color: #1fb5ac;
+      }
+    }
+  }
+}
+
+.about {
+  .about_photo,
+  .about_story {
+    @include display;
+  }
+  .about_photo {
+    padding: 10px;
+    background: #fff;
+  }
+  .about_story {
+    width: 580px;
+    min-height: 310px;
+  }
+}
+
+.skills {
+  .block {
+    width: 455px;
+    height: 310px;
+    @include display;
+  }
+  .skills_list,
+  .diagram {
+    display: inline-block;
+    vertical-align: bottom;
+  }
+  .skills_list {
+    margin-bottom: 30px;
+    li {
+      &:before {
+        content: '';
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+      }
+      &.html:before {
+        background: #c0a9ea;
+      }
+      &.css:before {
+        background: #ffdf7c;
+      }
+      &.js:before {
+        background: #aec785;
+      }
+      &.ps:before {
+        background: #b2def7;
+      }
+    }
+  }
+  .diagram {
+    margin: 35px 0 0 80px;
+  }
+  .diagram_item {
+    @include display;
+    width: 50px;
+    height: 170px;
+    background: #f1f2f7;
+    margin-left: 5px;
+    position: relative;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:before {
+      position: absolute;
+      top: -25px;
+      color: #737373;
+      font-size: 15px;
+      display: block;
+      width: 50px;
+      text-align: center;
+    }
+    .diagram_item_inner {
+      position: absolute;
+      width: 50px;
+      bottom: 0;
+    }
+    &.html {
+      .diagram_item_inner {
+        background: #c0a9ea;
+        height: $html_skill;
+      }
+      &:before {
+        content: '#{$html_skill}';
+      }
+    }
+    &.css {
+      .diagram_item_inner {
+        background: #ffdf7c;
+        height: $css_skill;
+      }
+      &:before {
+        content: '#{$css_skill}';
+      }
+    }
+    &.js {
+      .diagram_item_inner {
+        background: #aec785;
+        height: $js_skill;
+      }
+      &:before {
+        content: '#{$js_skill}';
+      }
+    }
+    &.ps {
+      .diagram_item_inner {
+        background: #b2def7;
+        height: $ps_skill;
+      }
+      &:before {
+        content: '#{$ps_skill}';
+      }
+    }
+  }
+}
+
+.experience {
+  .block {
+    margin-top: 30px;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  .experience_name,
+  .experience_date,
+  .experience_description {
+    @include display;
+  }
+  .experience_name {
+    font-size: 16px;
+    text-align: right;
+    width: 200px;
+    h2 {
+      margin: 0;
+    }
+  }
+  .experience_date {
+    height: 140px;
+    width: 140px;
+    border-radius: 50%;
+    border: 8px solid #f1f2f7;
+    margin: -35px 45px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    line-height: 16px;
+    padding-top: 35px;
+    &.blue {
+      background: #b2def7;
+    }
+    &.yellow {
+      background: #efca58;
+    }
+    &.green {
+      background: #aec785;
+    }
+    &.purple {
+      background: #c0a9ea;
+    }
+  }
+  .experience_description {
+    width: 440px;
+    line-height: 23px;
+  }
+}
+
+.education {
+  text-align: center;
+  .block {
+    @include display;
+    width: 290px;
+    min-height: 300px;
+  }
+  .education_date {
+    height: 95px;
+    width: 95px;
+    border-radius: 50%;
+    border: 8px solid #f1f2f7;
+    margin: -75px auto 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 14px;
+    line-height: 14px;
+    padding-top: 17px;
+    &.yellow {
+      background: #efca58;
+    }
+    &.green {
+      background: #aec785;
+    }
+    &.purple {
+      background: #c0a9ea;
+    }
+  }
+  h2 {
+    margin: 10px 0px 5px;
+  }
+  span {
+    font-size: 16px;
+  }
+  p {
+    margin-bottom: 0;
+  }
+}
+
+
+.portfolio {
+  .portfolio_inner {
+    position: relative;
+    min-height: 520px;
+  }
+  ul {
+    @include flexbox;
+    @include flexfolow(row wrap, row, wrap);
+    @include justify(space-around, justify);
+    @include transition(all, 1s);
+    position: absolute;
+    opacity: 0;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+    li {
+      border: 8px solid #fff;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 5px 0;
+    }
+    &[data-page='2'],
+    &[data-page='3'],
+    &[data-page='4'],
+    &.fadeout {
+      opacity: 0;
+      filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+    }
+    &.fadein {
+      opacity: 1;
+      filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+      z-index: 1;
+    }
+  }
+  .pag_wrapper {
+    text-align: center;
+    margin-top: 50px;
+    a {
+      background: #fff;
+      padding: 2px 8px;
+      cursor: pointer;
+      text-decoration: none;
+      &.active {
+        background: #1fb5ac;
+        color: #fff;
+        &:hover {
+          color: #fff;
+        }
+      }
+      &:hover {
+        color: #1fb5ac;
+      }
+    }
+  }
+}
+
+
+.no-flexbox {
+  .portfolio {
+    ul {
+      text-align: center;
+      li {
+        @include display;
+        border: 8px solid #fff;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 5px 2px;
+      }
+    }
+  }
+}
+
+.contacts {
+  .block {
+    @include display;
+    &.form {
+      width: 615px;
+    }
+    &.address {
+      width: 290px;
+    }
+    .input, textarea {
+      width: 525px;
+    }
+    textarea {
+      margin-bottom: 10px;
+    }
+    .send_success,
+    .send_fail {
+      display: none;
+    }
+    .send_success {
+      color: #1fb5ac;
+    }
+  }
+}
+
+.address {
+  .phone_number,
+  .skype_number,
+  .email {
+    padding-left: 25px;
+    margin: 5px 0;
+  }
+  .phone_number {
+    background: url('../img/contacts/phone.png') 0 50% no-repeat;
+  }
+  .skype_number {
+    background: url('../img/contacts/phone.png') 0 50% no-repeat;
+  }
+  .email {
+    background: url('../img/contacts/mail.png') 0 50% no-repeat;
+  }
+  .social_icons {
+    li {
+      @include display;
+      margin: 0 5px;
+      a {
+        &:hover {
+          background: #f1f2f7;
+          border-radius: 100%;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  text-align: center;
+  height: 100px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 45px;
+}
